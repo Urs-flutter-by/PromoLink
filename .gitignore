@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+*.egg-info/
+
+# Flutter
+.dart_tool/
+.flutter-plugins/
+.flutter-plugins-dependencies/
+.ios/
+.android/
+build/
+*.iml
+*.packages
+.idea/
+.vscode/
+
+# Universal
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.env*

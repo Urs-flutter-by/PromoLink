@@ -1,50 +1,84 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: (none) -> 1.0
+- Modified principles: All principles are new.
+- Added sections: All sections are new.
+- Removed sections: None.
+- Templates requiring updates:
+  - .specify/templates/plan-template.md: ⚠ pending
+  - .specify/templates/spec-template.md: ⚠ pending
+  - .specify/templates/tasks-template.md: ⚠ pending
+  - .specify/templates/commands/*.md: ⚠ pending
+- Follow-up TODOs: None.
+-->
+# Конституция проекта NTS PromoLink
 
-## Core Principles
+## Назначение
+Данный документ определяет основные принципы, стандарты разработки и правила функционирования проекта NTS PromoLink.
+Все действия разработчиков и ИИ-агентов (включая генерацию кода и обновление спецификаций) должны соответствовать этим правилам.
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+## Основные принципы
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### I. B2B-веб-платформа
+Мы создаём B2B-веб-платформу для управления акционными QR-карточками при продаже оборудования, с ролями: отдел продаж, ЦТО, администратор и гость.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. Спецификация и Технологии
+Спецификация описывает что нужно построить; технологии (Python/FastAPI, Dart/Flutter Web, PostgreSQL) определяют как это реализовано.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### III. Соответствие Спецификации
+Весь код и тесты должны строго соответствовать описанию в спецификации — любые отклонения требуют обновления Конституции или PRD.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+## Качество кода
+- Код должен быть понятным и само-документирующимся; имена переменных и функций должны отражать бизнес-сущности (например: `equipment_id`, `qr_serial`, `unp`).
+- Соблюдается единая структура проекта:
+  - `/backend/app/models`, `/backend/app/routers`, `/frontend/lib/screens`, и т.д.
+- Каждая новая функция должна сопровождаться модульными тестами, охватывающими успешные и ошибочные сценарии.
+- Любое отклонение от спецификации должно быть документировано и отмечено как обоснованное.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Документация и прослеживаемость
+- Каждый API-эндпоинт, изменение модели данных или крупный UI-компонент должен содержать ссылку на соответствующий раздел спецификации (например: “см. API SPECIFICATION: `/cards/{qr_serial} [GET]`”).
+- Изменения бизнес-логики требуют актуализации PRD и, при необходимости, этой Конституции.
+- Документация (README, PRD.md, spec-файлы) должна быть всегда в актуальном состоянии.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## Безопасность и конфиденциальность
+- Аутентификация — только через JWT с ролями (`admin`, `sales`, `cto`, `guest`).
+- Пароли хэшируются с использованием bcrypt или аналогичного алгоритма.
+- Все соединения между клиентом и сервером должны быть защищены HTTPS.
+- Система ведёт **аудит-лог** действий пользователей: вход, создание карточки, погашение, назначение скидок.
+- Разграничение доступа реализуется строго по ролям:
+  - Только `admin` может добавлять пользователей.
+  - Только `cto` может назначать скидки ЦТО.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Развёртывание и окружение
+- Используется **Docker Compose**: сервисы `backend`, `frontend`, `postgres`.
+- Переменные окружения задаются в `.env` и не должны попадать в репозиторий.
+  - Примеры: `DATABASE_URL`, `SECRET_KEY`, `API_UNP_URL`.
+- Для продакшн-среды обязательно использовать Nginx-прокси и безопасные учётные данные.
+- CI-конвейер должен включать этапы: линтинг, тестирование, сборка и деплой.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Целостность данных и бизнес-логика
+- Уникальность `cards.qr_serial` должна соблюдаться на уровне БД.
+- Разрешены только следующие переходы статусов:
+  - `valid → redeemed`,
+  - `valid → expired`.
+  Другие пути требуют обновления спецификации.
+- При создании карточки используется скидка по умолчанию, определённая в `equipment`.
+  После регистрации карточки изменение скидки на оборудовании не должно влиять на уже созданные карточки.
+
+## Поведение ИИ-агента
+- ИИ-агент обязан прочитать Конституцию и PRD перед генерацией кода.
+- При вызове `/speckit.constitution` агент должен зарегистрировать этот документ как источник правил.
+- Все создаваемые задачи (`/speckit.tasks`) должны содержать ссылки на разделы спецификации и кодовые модули.
+- В комментариях сгенерированного кода агент обязан указывать, какой раздел спецификации он реализует.
+
+## Допустимые отклонения
+- В рамках экспериментов допускается временное добавление “experimental”-функций, если они явно отмечены и одобрены администратором проекта.
+- После эксперимента функция должна быть либо интегрирована в спецификацию, либо удалена.
+
+## Управление изменениями
+- Любое изменение бизнес-логики или структуры данных должно сопровождаться обновлением PRD и, при необходимости, Конституции.
+- Обновления Конституции должны фиксироваться с версией и датой.
+- Все изменения фиксируются в файле `CHANGELOG.md` для аудита.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
-
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0 | **Ratified**: 2025-10-22 | **Last Amended**: 2025-10-22
