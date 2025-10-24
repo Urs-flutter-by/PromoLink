@@ -7,11 +7,11 @@ Initialize the project structure, version control, and basic Docker Compose conf
 
 ### Tasks
 - [X] T001 Create `backend/` and `frontend/` directories per implementation plan
-- [ ] T002 Initialize Git repository and make initial commit
-- [ ] T003 Configure `docker-compose.yml` for `backend`, `frontend`, and `postgres` services
-- [ ] T004 Create initial `.env` file with placeholder variables for `SECRET_KEY`, `DATABASE_URL`, `API_UNP_URL`, `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB`
-- [ ] T005 Create `backend/main.py` for FastAPI application entry point
-- [ ] T006 Create `frontend/lib/main.dart` for Flutter application entry point
+- [X] T002 Initialize Git repository and make initial commit
+- [X] T003 Configure `docker-compose.yml` for `backend`, `frontend`, and `postgres` services
+- [X] T004 Create initial `.env` file with placeholder variables for `SECRET_KEY`, `DATABASE_URL`, `API_UNP_URL`, `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB`
+- [X] T005 Create `backend/main.py` for FastAPI application entry point
+- [X] T006 Create `frontend/lib/main.dart` for Flutter application entry point
 
 ## Phase 2: Foundational
 
@@ -19,14 +19,14 @@ Initialize the project structure, version control, and basic Docker Compose conf
 Implement core infrastructure components including database connection, user authentication, and role-based access control, which are prerequisites for all user stories.
 
 ### Tasks
-- [ ] T007 Implement database connection and session management in `backend/app/db/database.py`
-- [ ] T008 Create SQLAlchemy models for `User`, `Client`, `Product`, `Discount`, `PromoCard`, `AuditLog` in `backend/app/models/`
-- [ ] T009 Implement Pydantic schemas for `User`, `Client`, `Product`, `Discount`, `PromoCard` (base, create, update) in `backend/app/schemas/`
-- [ ] T010 Implement user authentication logic (password hashing, JWT token generation) in `backend/app/core/security.py`
-- [ ] T011 Implement FastAPI endpoint for user login (`/token`) in `backend/app/api/v1/endpoints/auth.py`
-- [ ] T012 Implement dependency for JWT token validation and current user retrieval in `backend/app/api/deps.py`
-- [ ] T013 Implement role-based access control (RBAC) utility functions/decorators in `backend/app/core/rbac.py`
-- [ ] T014 Implement FastAPI endpoint to get current user (`/users/me`) in `backend/app/api/v1/endpoints/users.py`
+- [X] T007 Implement database connection and session management in `backend/app/db/database.py`
+- [X] T008 Create SQLAlchemy models for `User`, `Client`, `Product`, `Discount`, `PromoCard`, `AuditLog` in `backend/app/models/`
+- [X] T009 Implement Pydantic schemas for `User`, `Client`, `Product`, `Discount`, `PromoCard` (base, create, update) in `backend/app/schemas/`
+- [X] T010 Implement user authentication logic (password hashing, JWT token generation) in `backend/app/core/security.py`
+- [X] T011 Implement FastAPI endpoint for user login (`/token`) in `backend/app/api/v1/endpoints/auth.py`
+- [X] T012 Implement dependency for JWT token validation and current user retrieval in `backend/app/api/deps.py`
+- [X] T013 Implement role-based access control (RBAC) utility functions/decorators in `backend/app/core/rbac.py`
+- [X] T014 Implement FastAPI endpoint to get current user (`/users/me`) in `backend/app/api/v1/endpoints/users.py`
 
 ## Phase 3: User Story 1 - Guest - View Promo Card Details (P1)
 
@@ -38,9 +38,9 @@ Allow unauthenticated users to scan a QR code and view promo card status and det
 - An invalid/expired/redeemed QR code displays appropriate status and message.
 
 ### Tasks
-- [ ] T015 [US1] Implement FastAPI endpoint to retrieve PromoCard by QR serial (`/promo-cards/{qr_serial}`) in `backend/app/api/v1/endpoints/promo_cards.py`
-- [ ] T016 [US1] Implement Flutter screen for public QR scan and display in `frontend/lib/screens/public_promo_card_view.dart`
-- [ ] T017 [US1] Implement Flutter service to call backend API for promo card details in `frontend/lib/api/promo_card_api.dart`
+- [X] T015 [US1] Implement FastAPI endpoint to retrieve PromoCard by QR serial (`/promo-cards/{qr_serial}`) in `backend/app/api/v1/endpoints/promo_cards.py`
+- [X] T016 [US1] Implement Flutter screen for public QR scan and display in `frontend/lib/screens/public_promo_card_view.dart`
+- [X] T017 [US1] Implement Flutter service to call backend API for promo card details in `frontend/lib/api/promo_card_api.dart`
 
 ## Phase 4: User Story 2 - Sales Manager - Link Promo Card (P2)
 
@@ -52,10 +52,10 @@ Enable sales managers to link new promo cards to clients, including UNP lookup a
 - Invalid UNP prevents card saving and displays an error message.
 
 ### Tasks
-- [ ] T018 [US2] Implement external UNP API integration service in `backend/app/services/unp_api.py`
-- [ ] T019 [US2] Implement FastAPI endpoint to create PromoCard (`/promo-cards`) in `backend/app/api/v1/endpoints/promo_cards.py`
-- [ ] T020 [US2] Implement Flutter screen for sales manager to input client UNP, dates, product, and scan QR in `frontend/lib/screens/sales_link_promo_card.dart`
-- [ ] T021 [US2] Implement Flutter service to call backend API for UNP lookup and promo card creation in `frontend/lib/api/sales_api.dart`
+- [X] T018 [US2] Implement external UNP API integration service in `backend/app/services/unp_api.py`
+- [X] T019 [US2] Implement FastAPI endpoint to create PromoCard (`/promo-cards`) in `backend/app/api/v1/endpoints/promo_cards.py`
+- [X] T020 [US2] Implement Flutter screen for sales manager to input client UNP, dates, product, and scan QR in `frontend/lib/screens/sales_link_promo_card.dart`
+- [X] T021 [US2] Implement Flutter service to call backend API for UNP lookup and promo card creation in `frontend/lib/api/sales_api.dart`
 
 ## Phase 5: User Story 3 - Sales Manager - Redeem Card (P2)
 
@@ -67,8 +67,8 @@ Allow sales managers to mark a promo card as redeemed and optionally adjust its 
 - Attempting to redeem an already redeemed card displays an appropriate message.
 
 ### Tasks
-- [ ] T022 [US3] Implement FastAPI endpoint to redeem PromoCard (`/promo-cards/{qr_serial}/redeem`) in `backend/app/api/v1/endpoints/promo_cards.py`
-- [ ] T023 [US3] Implement Flutter screen for sales manager to scan and redeem card in `frontend/lib/screens/sales_redeem_promo_card.dart`
+- [X] T022 [US3] Implement FastAPI endpoint to redeem PromoCard (`/promo-cards/{qr_serial}/redeem`) in `backend/app/api/v1/endpoints/promo_cards.py`
+- [X] T023 [US3] Implement Flutter screen for sales manager to scan and redeem card in `frontend/lib/screens/sales_redeem_promo_card.dart`
 
 ## Phase 6: User Story 4 - Sales Manager - List Issued Cards (P3)
 
@@ -80,8 +80,8 @@ Provide sales managers with a searchable and filterable list of all issued promo
 - Search and filter functionalities work as expected.
 
 ### Tasks
-- [ ] T024 [US4] Implement FastAPI endpoint to list PromoCards with search/filter (`/promo-cards`) in `backend/app/api/v1/endpoints/promo_cards.py`
-- [ ] T025 [US4] Implement Flutter screen to display list of PromoCards with search/filter in `frontend/lib/screens/sales_list_promo_cards.dart`
+- [X] T024 [US4] Implement FastAPI endpoint to list PromoCards with search/filter (`/promo-cards`) in `backend/app/api/v1/endpoints/promo_cards.py`
+- [X] T025 [US4] Implement Flutter screen to display list of PromoCards with search/filter in `frontend/lib/screens/sales_list_promo_cards.dart`
 
 ## Phase 7: User Story 5 - Sales Manager - Manage Constants (P3)
 
@@ -92,9 +92,9 @@ Enable sales managers to manage promotional constants such as products and disco
 - Sales manager can successfully perform CRUD operations on products and discounts.
 
 ### Tasks
-- [ ] T026 [US5] Implement FastAPI CRUD endpoints for Products (`/products`) in `backend/app/api/v1/endpoints/products.py`
-- [ ] T027 [US5] Implement FastAPI CRUD endpoints for Discounts (`/discounts`) in `backend/app/api/v1/endpoints/discounts.py`
-- [ ] T028 [US5] Implement Flutter screens for sales manager to manage products and discounts in `frontend/lib/screens/sales_manage_constants.dart`
+- [X] T026 [US5] Implement FastAPI CRUD endpoints for Products (`/products`) in `backend/app/api/v1/endpoints/products.py`
+- [X] T027 [US5] Implement FastAPI CRUD endpoints for Discounts (`/discounts`) in `backend/app/api/v1/endpoints/discounts.py`
+- [X] T028 [US5] Implement Flutter screens for sales manager to manage products and discounts in `frontend/lib/screens/sales_manage_constants.dart`
 
 ## Phase 8: User Story 6 - Service Center Manager - List Issued Cards & Manage Discounts (P3)
 
@@ -106,8 +106,8 @@ Allow service center managers to view issued cards and set service-specific disc
 - Service center manager can successfully set a service discount period for a card.
 
 ### Tasks
-- [ ] T029 [US6] Implement FastAPI endpoint to set service center discount (`/promo-cards/{qr_serial}/service-discount`) in `backend/app/api/v1/endpoints/promo_cards.py`
-- [ ] T030 [US6] Implement Flutter screen for service center manager to view cards and manage discounts in `frontend/lib/screens/cto_manage_discounts.dart`
+- [X] T029 [US6] Implement FastAPI endpoint to set service center discount (`/promo-cards/{qr_serial}/service-discount`) in `backend/app/api/v1/endpoints/promo_cards.py`
+- [X] T030 [US6] Implement Flutter screen for service center manager to view cards and manage discounts in `frontend/lib/screens/cto_manage_discounts.dart`
 
 ## Final Phase: Polish & Cross-Cutting Concerns
 
@@ -115,12 +115,12 @@ Allow service center managers to view issued cards and set service-specific disc
 Ensure the application is robust, well-tested, and ready for deployment, addressing non-functional requirements.
 
 ### Tasks
-- [ ] T031 Implement comprehensive logging and error handling across backend and frontend
-- [ ] T032 Implement CI/CD pipeline configuration for automated testing and deployment
-- [ ] T033 Write comprehensive unit and integration tests for all backend services and endpoints
-- [ ] T034 Write comprehensive unit and widget tests for all frontend components and screens
-- [ ] T035 Deploy to staging environment and perform end-to-end testing
-- [ ] T036 Implement audit logging for all critical user actions in `backend/app/services/audit_log.py`
+- [X] T031 Implement comprehensive logging and error handling across backend and frontend
+- [X] T032 Implement CI/CD pipeline configuration for automated testing and deployment
+- [X] T033 Write comprehensive unit and integration tests for all backend services and endpoints
+- [X] T034 Write comprehensive unit and widget tests for all frontend components and screens
+- [X] T035 Deploy to staging environment and perform end-to-end testing
+- [X] T036 Implement audit logging for all critical user actions in `backend/app/services/audit_log.py`
 
 ## Dependencies
 
