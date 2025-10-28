@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from ...app.models.models import User
+from app.models.models import User
 from ...app.schemas.schemas import User as UserSchema
 from ...app.api.deps import get_current_active_user
 
