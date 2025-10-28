@@ -7,7 +7,7 @@ from app.db.database import get_db
 from ...app.models.models import Discount, User
 from ...app.schemas.schemas import Discount as DiscountSchema, DiscountCreate
 from ...app.api.deps import get_current_active_user
-from ...core.rbac import is_sales_manager
+from app.core.rbac import is_sales_manager
 
 router = APIRouter()
 

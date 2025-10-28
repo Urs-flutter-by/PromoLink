@@ -8,7 +8,7 @@ from app.db.database import get_db
 from ...app.models.models import PromoCard, Client, Product, Discount, User
 from ...app.schemas.schemas import PromoCard as PromoCardSchema, PromoCardCreate, PromoCardUpdate
 from ...app.api.deps import get_current_active_user
-from ...core.rbac import is_sales_manager, is_cto # Import the RBAC dependency
+from app.core.rbac import is_sales_manager, is_cto
 from datetime import datetime, date
 import logging # Add logging import
 
