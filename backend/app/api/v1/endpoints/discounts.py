@@ -3,7 +3,7 @@ from typing import Annotated, List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from ...db.database import get_db
+from app.db.database import get_db
 from ...app.models.models import Discount, User
 from ...app.schemas.schemas import Discount as DiscountSchema, DiscountCreate
 from ...app.api.deps import get_current_active_user

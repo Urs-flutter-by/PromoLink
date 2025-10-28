@@ -1,0 +1,35 @@
+On branch 001-promo-card-web-app
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   backend/app/api/v1/endpoints/promo_cards.py
+	modified:   backend/main.py
+	modified:   frontend/lib/screens/public_promo_card_view.dart
+	modified:   specs/001-promo-card-web-app/tasks.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.github/
+	backend/app/api/v1/endpoints/discounts.py
+	backend/app/api/v1/endpoints/products.py
+	backend/app/services/
+	backend/tests/
+	frontend/.gitignore
+	frontend/.metadata
+	frontend/README.md
+	frontend/analysis_options.yaml
+	frontend/lib/api/sales_api.dart
+	frontend/lib/screens/cto_manage_discounts.dart
+	frontend/lib/screens/sales_link_promo_card.dart
+	frontend/lib/screens/sales_list_promo_cards.dart
+	frontend/lib/screens/sales_manage_constants.dart
+	frontend/lib/screens/sales_redeem_promo_card.dart
+	frontend/pubspec.lock
+	frontend/pubspec.yaml
+	frontend/test/
+	frontend/web/
+	temp_scripts/dart_analyze_error.txt
+	temp_scripts/dart_analyze_output.txt
+	temp_scripts/git_status_output.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")

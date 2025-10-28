@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
 
-from ...db.database import get_db
+from app.db.database import get_db
 from ...app.models.models import PromoCard, Client, Product, Discount, User
 from ...app.schemas.schemas import PromoCard as PromoCardSchema, PromoCardCreate, PromoCardUpdate
 from ...app.api.deps import get_current_active_user
