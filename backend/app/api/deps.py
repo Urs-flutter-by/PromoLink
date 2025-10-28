@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 from app.db.database import get_db
 from app.schemas.schemas import TokenData
 from app.core.security import SECRET_KEY, ALGORITHM
+from app.models.models import User # Import User model
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 

@@ -9,12 +9,7 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     password: str
 
-class User(UserBase):
-    id: int
-    created_at: datetime
-
-    class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ClientBase(BaseModel):
     unp: str
@@ -23,12 +18,7 @@ class ClientBase(BaseModel):
 class ClientCreate(ClientBase):
     pass
 
-class Client(ClientBase):
-    id: int
-    created_at: datetime
-
-    class Config:
-        orm_mode = True
+        from_attributes = True
 
 class DiscountBase(BaseModel):
     name: str
@@ -44,7 +34,7 @@ class Discount(DiscountBase):
     created_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ProductBase(BaseModel):
     name: str
@@ -59,7 +49,7 @@ class Product(ProductBase):
     default_discount: Optional[Discount] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class PromoCardBase(BaseModel):
     qr_serial: str
@@ -87,10 +77,7 @@ class PromoCard(PromoCardBase):
     client: Client
     product: Product
     discount: Discount
-    issuer: User
-
-    class Config:
-        orm_mode = True
+        from_attributes = True
 
 class AuditLogBase(BaseModel):
     user_id: Optional[int] = None
@@ -105,7 +92,7 @@ class AuditLog(AuditLogBase):
     created_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class Token(BaseModel):
     access_token: str
