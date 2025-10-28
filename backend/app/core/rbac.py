@@ -1,7 +1,7 @@
 from fastapi import HTTPException, status, Depends
 from typing import List
-from ..app.models.models import User
-from ..app.api.deps import get_current_active_user
+from app.models.models import User
+from app.api.deps import get_current_active_user
 
 def check_roles(allowed_roles: List[str]):
     def role_checker(current_user: User = Depends(get_current_active_user)):
