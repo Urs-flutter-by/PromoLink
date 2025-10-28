@@ -9,6 +9,11 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     password: str
 
+class User(UserBase):
+    id: int
+    created_at: datetime
+
+    class Config:
         from_attributes = True
 
 class ClientBase(BaseModel):
@@ -18,6 +23,11 @@ class ClientBase(BaseModel):
 class ClientCreate(ClientBase):
     pass
 
+class Client(ClientBase):
+    id: int
+    created_at: datetime
+
+    class Config:
         from_attributes = True
 
 class DiscountBase(BaseModel):
@@ -77,6 +87,9 @@ class PromoCard(PromoCardBase):
     client: Client
     product: Product
     discount: Discount
+    issuer: User
+
+    class Config:
         from_attributes = True
 
 class AuditLogBase(BaseModel):
