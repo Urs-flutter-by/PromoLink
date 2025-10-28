@@ -16,6 +16,9 @@ app.include_router(products.router, prefix="/api/v1/products", tags=["products"]
 app.include_router(promo_cards.router, prefix="/api/v1/promo_cards", tags=["promo_cards"])
 app.include_router(users.router, prefix="/api/v1/users", tags=["users"])
 
+from app.db.database import engine, Base
+Base.metadata.create_all(bind=engine)
+
 @app.exception_handler(Exception)
 async def validation_exception_handler(request: Request, exc: Exception):
     logger.error(f"Unhandled exception: {exc}", exc_info=True)
