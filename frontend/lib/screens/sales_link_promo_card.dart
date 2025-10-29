@@ -4,7 +4,8 @@ class SalesLinkPromoCardScreen extends StatefulWidget {
   const SalesLinkPromoCardScreen({super.key});
 
   @override
-  State<SalesLinkPromoCardScreen> createState() => _SalesLinkPromoCardScreenState();
+  State<SalesLinkPromoCardScreen> createState() =>
+      _SalesLinkPromoCardScreenState();
 }
 
 class _SalesLinkPromoCardScreenState extends State<SalesLinkPromoCardScreen> {
@@ -18,9 +19,7 @@ class _SalesLinkPromoCardScreenState extends State<SalesLinkPromoCardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Link Promo Card'),
-      ),
+      appBar: AppBar(title: const Text('Link Promo Card')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -32,7 +31,7 @@ class _SalesLinkPromoCardScreenState extends State<SalesLinkPromoCardScreen> {
                 onChanged: (value) => _qrSerial = value,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter QR Serial';
+                    return 'Пожалуйста отсканируйте QR код с промо-карточки';
                   }
                   return null;
                 },
@@ -42,7 +41,7 @@ class _SalesLinkPromoCardScreenState extends State<SalesLinkPromoCardScreen> {
                 onChanged: (value) => _unp = value,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter Client UNP';
+                    return 'УНП';
                   }
                   return null;
                 },
@@ -53,15 +52,21 @@ class _SalesLinkPromoCardScreenState extends State<SalesLinkPromoCardScreen> {
                 keyboardType: TextInputType.number,
                 onChanged: (value) => _productId = int.tryParse(value) ?? 0,
                 validator: (value) {
-                  if (value == null || value.isEmpty || int.tryParse(value) == null) {
+                  if (value == null ||
+                      value.isEmpty ||
+                      int.tryParse(value) == null) {
                     return 'Please enter a valid Product ID';
                   }
                   return null;
                 },
               ),
               // TODO: Implement date pickers for validFrom and validUntil
-              Text('Valid From: ${_validFrom.toLocal().toIso8601String().split('T')[0]}'),
-              Text('Valid Until: ${_validUntil.toLocal().toIso8601String().split('T')[0]}'),
+              Text(
+                'Valid From: ${_validFrom.toLocal().toIso8601String().split('T')[0]}',
+              ),
+              Text(
+                'Valid Until: ${_validUntil.toLocal().toIso8601String().split('T')[0]}',
+              ),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
@@ -69,7 +74,9 @@ class _SalesLinkPromoCardScreenState extends State<SalesLinkPromoCardScreen> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Processing Data')),
                     );
-                    print('Linking promo card: QR: $_qrSerial, UNP: $_unp, Product ID: $_productId');
+                    print(
+                      'Linking promo card: QR: $_qrSerial, UNP: $_unp, Product ID: $_productId',
+                    );
                   }
                 },
                 child: const Text('Link Card'),

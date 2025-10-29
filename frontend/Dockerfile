@@ -13,9 +13,13 @@ COPY . .
 
 # Build the web application
 RUN flutter build web
+RUN ls -la /app/build/web
 
 # Stage 2: Serve the built app using a lightweight web server
 FROM nginx:alpine
+
+# Remove default Nginx content
+RUN rm -rf /usr/share/nginx/html/*
 
 # Copy the built web app from the 'build' stage
 COPY --from=build /app/build/web /usr/share/nginx/html

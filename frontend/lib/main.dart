@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/features/authentication/presentation/pages/login_page.dart'; // New import path
 
 void main() {
   runApp(const MyApp());
@@ -14,14 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('PromoLink Frontend'),
-        ),
-        body: const Center(
-          child: Text('Frontend is running!'),
-        ),
-      ),
+      home: const LoginPage(), // Use the new LoginPage
     );
   }
 }
