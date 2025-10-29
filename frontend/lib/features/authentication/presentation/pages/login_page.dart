@@ -55,7 +55,9 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
               onPressed: () {
                 // TODO: Implement login logic
-                print('Логин: ${_usernameController.text}, Пароль: ${_passwordController.text}');
+                print(
+                  'Логин: ${_usernameController.text}, Пароль: ${_passwordController.text}',
+                );
                 Navigator.of(context).pop();
               },
               child: const Text('Войти'),
@@ -63,7 +65,6 @@ class _LoginPageState extends State<LoginPage> {
           ],
         );
       },
-
     );
   }
 
@@ -99,7 +100,10 @@ class _LoginPageState extends State<LoginPage> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white, // bg-white
                     foregroundColor: const Color(0xFF1f619e), // text-primary
-                    minimumSize: const Size(double.infinity, 40), // w-full, h-10
+                    minimumSize: const Size(
+                      double.infinity,
+                      40,
+                    ), // w-full, h-10
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0), // rounded-lg
                     ),
@@ -120,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
               color: Colors.white, // bg-white
               child: const Center(
                 child: Text(
-                  'Main Content Area (Placeholder)',
+                  'Проверить свою акционную карту',
                   style: TextStyle(fontSize: 24, color: Colors.black),
                 ),
               ),
